@@ -4,7 +4,7 @@
 using namespace std;
 
 int a,b;
-const int MAXN = 1e8;  // 根据题目调整上限
+const int MAXN = 1e8; 
 vector<bool> is_prime(MAXN + 1, true);
 
 // 预处理质数表
