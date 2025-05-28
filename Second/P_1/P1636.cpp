@@ -3,6 +3,7 @@ using namespace std;
 
 int a[100005],b[100005],ans = 0;
 
+// 象棋比赛 排序 模拟
 int main()
 {
     int n,k;
