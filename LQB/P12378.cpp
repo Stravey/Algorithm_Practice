@@ -1,4 +1,4 @@
-// P12378 [À¶ÇÅ±­ 2023 Ê¡ Python B] Ó²±Ò¶Ò»»
+//P12378 [À¶ÇÅ±­ 2023 Ê¡ Python B] Ó²±Ò¶Ò»»
 #include "iostream"
 using namespace std;
 int main()

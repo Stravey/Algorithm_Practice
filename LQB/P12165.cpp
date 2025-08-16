@@ -1,4 +1,4 @@
-// P12165 [À¶ÇÅ±­ 2025 Ê¡ C/Java A] ×î¶Ì¾àÀë
+//P12165 [À¶ÇÅ±­ 2025 Ê¡ C/Java A] ×î¶Ì¾àÀë
 #include "iostream"
 #include "algorithm"
 using namespace std;

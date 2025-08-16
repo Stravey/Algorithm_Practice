@@ -1,8 +1,7 @@
-// P12323 [À¶ÇÅ±­ 2023 Ê¡ Java B] ½×³ËÇóºÍ
+//P12323 [À¶ÇÅ±­ 2023 Ê¡ Java B] ½×³ËÇóºÍ
 #include "iostream"
 const int mod = 1e9;
 using namespace std;
-
 int main()
 {
     long long sum = 0,ans = 1;
