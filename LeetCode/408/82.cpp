@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+// 时间复杂度O(n) 空间复杂度O(1)
 struct ListNode {
    int val;
     ListNode *next;
