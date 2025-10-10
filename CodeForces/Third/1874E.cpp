@@ -4,7 +4,7 @@
 #include <cstring>
 typedef long long ll;
 using namespace std;
-
+// ¶þ·Ö´ð°¸
 int main() 
 {
     ll t;
