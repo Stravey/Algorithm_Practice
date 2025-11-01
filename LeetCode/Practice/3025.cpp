@@ -12,7 +12,6 @@ int numberOfPairs(vector<vector<int>>& points) {
     });
     int ans = 0;
     int n = points.size();
-        
     // Ë«ÖØÑ­»·
     for(int i = 0;i < n - 1;i++) {
         int max_x = -1;
