@@ -7,14 +7,15 @@ int T = 1;
 void solve() {
     ll x1,y1,x2,y2;
     cin >> x1 >> y1 >> x2 >> y2;
-    if(y1 == y2) {
-        ll new_y = (y1 == 0) ? 1 : y1 - 1;
-        cout << x1 << " " << new_y << x2 << "  " << new_y << endl;
+    if(x1 != x2 && y1 != y2) {
+        cout << x1 << " " << y2 << " " << x2 << " " << y1 << endl;
+        return;
     } else if(x1 == x2) {
-        ll new_x = (x1 == 0) ? 1 : x1 - 1;
-        cout << new_x << " " << y1 << " " << new_x << " " << y2 << endl;
-    } else {
-        cout << x1 << " " << y1 << " " << x2 << " " << y2 << endl;
+        cout << x1 + 1 << " " << y1 << " " << x2 + 1 << " " << y2 << endl;
+        return;
+    } else if(y1 == y2) {
+        cout << x1 << " " << y1 - 1 << " " << x2 << "  " << y2 - 1 << endl;
+        return;
     }
 }
 signed main()
