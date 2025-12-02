@@ -4,7 +4,7 @@ using namespace std;
 int n;
 long long a[N];
 long long ans = 0,sum = 0;
-
+// 前缀和优化
 int main()
 {
     cin >> n;
