@@ -10,13 +10,16 @@ void solve() {
     string s;
     cin >> n >> s;
     vector<ll> cnt(26,0);
+    // 统计字母出现频次
     for(char c : s) {
         cnt[c - 'a']++;
     }
     ll ans = 0;
+    // 枚举三种可能
     for(int i = 0;i < 26;i++) {
         for(int j = i + 1;j < 26;j++) {
             for(int k = j + 1;k < 26;k++) {
+                // * 6 是因为3!排序为 6 种
                 ll ways = cnt[i] % mod * cnt[j] % mod  * cnt[k] % mod * 6 % mod;
                 ans = (ans + ways) % mod;
             }
