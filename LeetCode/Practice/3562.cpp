@@ -88,7 +88,6 @@ int main() {
     vector<int> future = {5, 7, 10};
     vector<vector<int>> hierarchy = {{1, 2}, {1, 3}};
     int budget = 10;
-    
     cout << "Max profit: " << sol.maxProfit(n, present, future, hierarchy, budget) << endl;
     return 0;
 }
