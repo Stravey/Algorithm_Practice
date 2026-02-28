@@ -7,17 +7,17 @@
 class My_sort
 {
 private:
-    //¶şÂ·¹é²¢ÅÅĞòËã·¨×î¶Ì¶Î³¤¶È£¬ÉÙÓÚ´ËÖµÊ±½«Ê¹ÓÃÕÛ°ë²åÈëÅÅĞòÒÔÌáÉıĞÔÄÜ£¬ÍÆ¼öÖµ64£¨ÉèÖÃÎª0ÔòÈ¡ÏûÕÛ°ë²åÈëÅÅĞò£©
+    //äºŒè·¯å½’å¹¶æ’åºç®—æ³•æœ€çŸ­æ®µé•¿åº¦ï¼Œå°‘äºæ­¤å€¼æ—¶å°†ä½¿ç”¨æŠ˜åŠæ’å…¥æ’åºä»¥æå‡æ€§èƒ½ï¼Œæ¨èå€¼64ï¼ˆè®¾ç½®ä¸º0åˆ™å–æ¶ˆæŠ˜åŠæ’å…¥æ’åºï¼‰
     const static int MERGE_SORT_SHORTEST_SEGMENT_LENGTH = 64;
-    //¿ìËÙÅÅĞòËã·¨×î¶Ì¶Î³¤¶È£¬ÉÙÓÚ´ËÖµÊ±½«Ê¹ÓÃÕÛ°ë²åÈëÅÅĞòÒÔÌáÉıĞÔÄÜ£¬ÍÆ¼öÖµ16£¨ÉèÖÃÎª0ÔòÈ¡ÏûÕÛ°ë²åÈëÅÅĞò£©
+    //å¿«é€Ÿæ’åºç®—æ³•æœ€çŸ­æ®µé•¿åº¦ï¼Œå°‘äºæ­¤å€¼æ—¶å°†ä½¿ç”¨æŠ˜åŠæ’å…¥æ’åºä»¥æå‡æ€§èƒ½ï¼Œæ¨èå€¼16ï¼ˆè®¾ç½®ä¸º0åˆ™å–æ¶ˆæŠ˜åŠæ’å…¥æ’åºï¼‰
     const static int QUICK_SORT_SHORTEST_SEGMENT_LENGTH = 16;
-    //¿ìËÙÅÅĞòËã·¨×î´óµİ¹éÉî¶È£¬´óÓÚ´ËÖµÊ±½«Ê¹ÓÃ¶ÑÅÅĞòÒÔ±ÜÃâĞÔÄÜ¶ñ»¯£¬ÍÆ¼öÖµ32£¨ÉèÖÃÎª0ÔòÈ¡Ïû¶ÑÅÅĞò£©
+    //å¿«é€Ÿæ’åºç®—æ³•æœ€å¤§é€’å½’æ·±åº¦ï¼Œå¤§äºæ­¤å€¼æ—¶å°†ä½¿ç”¨å †æ’åºä»¥é¿å…æ€§èƒ½æ¶åŒ–ï¼Œæ¨èå€¼32ï¼ˆè®¾ç½®ä¸º0åˆ™å–æ¶ˆå †æ’åºï¼‰
     const static int QUICK_SORT_MAXIMUM_RECURSION_DEPTH = 32;
-    //Í°ÅÅĞòËã·¨Æ½¾ùÃ¿¸öÍ°ÄÚµÄÔªËØÊıÁ¿£¬ÍÆ¼öÖµ128
+    //æ¡¶æ’åºç®—æ³•å¹³å‡æ¯ä¸ªæ¡¶å†…çš„å…ƒç´ æ•°é‡ï¼Œæ¨èå€¼128
     const static int BUCKET_SORT_DEFAULT_NUM_OF_ELEMENTS_IN_BUCKETS = 128;
 
-    //½»»»Á½¸öÔªËØ
-    //ÄÚÁªº¯Êı
+    //äº¤æ¢ä¸¤ä¸ªå…ƒç´ 
+    //å†…è”å‡½æ•°
     template <typename T>
     inline static void swap(T &t1, T &t2)
     {
@@ -26,7 +26,7 @@ private:
         t2 = temp;
     }
 
-    //¼ÆËã10µÄÕıÕûÊı´ÎÃİ ÄÚÁª
+    //è®¡ç®—10çš„æ­£æ•´æ•°æ¬¡å¹‚ å†…è”
     inline static int ten_power(int n)
     {
         int result = 1;
@@ -37,24 +37,24 @@ private:
         return result;
     }
 
-    //½¨Á¢´ó¸ù¶Ñ£¬½öÓÃÓÚ¶ÑÅÅĞò
+    //å»ºç«‹å¤§æ ¹å †ï¼Œä»…ç”¨äºå †æ’åº
     template <typename T>
     static void build_heap(T data[], int first, int last)
     {
-        //´ÓfirstÆğ¿ªÊ¼ÏòÏÂµ÷Õû
+        //ä»firstèµ·å¼€å§‹å‘ä¸‹è°ƒæ•´
         int parent = first;
-        int child = parent * 2 + 1; //Êµ¼ÊÉÏÊÇ×óº¢×Ó
+        int child = parent * 2 + 1; //å®é™…ä¸Šæ˜¯å·¦å­©å­
 
-        //ÏòÏÂµİ¹éµ÷Õû
+        //å‘ä¸‹é€’å½’è°ƒæ•´
         while (child <= last)
         {
-            //±È½Ï×óº¢×ÓºÍÓÒº¢×Ó£¬½«childÖ¸Ïò½Ï´óµÄÄÇ¸öº¢×Ó
+            //æ¯”è¾ƒå·¦å­©å­å’Œå³å­©å­ï¼Œå°†childæŒ‡å‘è¾ƒå¤§çš„é‚£ä¸ªå­©å­
             if (child + 1 <= last && data[child] < data[child + 1])
                 child++;
 
-            if (data[parent] > data[child]) //¸¸½Úµã´óÓÚÁ½¸ö×Ó½Úµã£¬ÎŞĞèÏòÏÂµ÷Õû
+            if (data[parent] > data[child]) //çˆ¶èŠ‚ç‚¹å¤§äºä¸¤ä¸ªå­èŠ‚ç‚¹ï¼Œæ— éœ€å‘ä¸‹è°ƒæ•´
                 return;
-            else //·ñÔò½»»»¸¸½ÚµãÓë½Ï´ó×Ó½Úµã£¬È»ºóÏòÏÂµİ¹éµ÷Õû
+            else //å¦åˆ™äº¤æ¢çˆ¶èŠ‚ç‚¹ä¸è¾ƒå¤§å­èŠ‚ç‚¹ï¼Œç„¶åå‘ä¸‹é€’å½’è°ƒæ•´
             {
                 swap(data[parent], data[child]);
                 parent = child;
@@ -64,7 +64,7 @@ private:
     }
 
 public:
-    //Ã°ÅİÅÅĞò
+    //å†’æ³¡æ’åº
     template <typename T>
     static void bubble_sort(T data[], int length)
     {
@@ -77,12 +77,12 @@ public:
         }
     }
 
-    //Ñ¡ÔñÅÅĞò
+    //é€‰æ‹©æ’åº
     template <typename T>
     static void selection_sort(T data[], int length)
     {
         for (int i = 0; i < length; i++) {
-            //²éÕÒ×îĞ¡µÄÔªËØ
+            //æŸ¥æ‰¾æœ€å°çš„å…ƒç´ 
             int min_index = i;
             for (int j = i; j < length; j++) {
                 if (data[j] < data[min_index]) {
@@ -90,20 +90,20 @@ public:
                 }
             }
 
-            //½«Æä·ÅÔÚÖ¸¶¨Î»ÖÃ
+            //å°†å…¶æ”¾åœ¨æŒ‡å®šä½ç½®
             swap(data[i], data[min_index]);
         }
     }
 
-    //¼òµ¥²åÈëÅÅĞò
+    //ç®€å•æ’å…¥æ’åº
     template <typename T>
     static void insertion_sort(T data[], int length)
     {
         for (int i = 1; i < length; i++)
         {
-            //Êı×é·ÖÎªÁ½²¿·Ö£º[0, i-1]ÎªÓĞĞòÇø£¬[i, length-1]ÎªÎŞĞòÇø£¬data[i]Îª´ı²åÈëÔªËØ
+            //æ•°ç»„åˆ†ä¸ºä¸¤éƒ¨åˆ†ï¼š[0, i-1]ä¸ºæœ‰åºåŒºï¼Œ[i, length-1]ä¸ºæ— åºåŒºï¼Œdata[i]ä¸ºå¾…æ’å…¥å…ƒç´ 
 
-            //1. Ë³Ğò²éÕÒdata[i]µÄ²åÈëÎ»ÖÃ
+            //1. é¡ºåºæŸ¥æ‰¾data[i]çš„æ’å…¥ä½ç½®
             int insert_index;
             for (insert_index = 0; insert_index < i; insert_index++)
             {
@@ -113,31 +113,31 @@ public:
                     break;
             }
 
-            //2. Ôİ´ædata[i]
+            //2. æš‚å­˜data[i]
             T temp = data[i];
 
-            //3. ½«²åÈëÎ»ÖÃÖ®ºóµÄÔªËØºóÒÆÒ»¸ñ
+            //3. å°†æ’å…¥ä½ç½®ä¹‹åçš„å…ƒç´ åç§»ä¸€æ ¼
             for (int j = i; j > insert_index; j--)
                 data[j] = data[j - 1];
 
-            //4. ²åÈëdata[i]
+            //4. æ’å…¥data[i]
             data[insert_index] = temp;
         }
     }
 
-    //ÕÛ°ë²åÈëÅÅĞò
+    //æŠ˜åŠæ’å…¥æ’åº
     template <typename T>
     static void binary_search_insertion_sort(T data[], int length)
     {
         for (int index = 1; index < length; index++)
         {
-            //Êı×é·ÖÎªÁ½²¿·Ö£º[0, index-1]ÎªÓĞĞòÇø£¬[index, length-1]ÎªÎŞĞòÇø£¬data[index]Îª´ı²åÈëÔªËØ
+            //æ•°ç»„åˆ†ä¸ºä¸¤éƒ¨åˆ†ï¼š[0, index-1]ä¸ºæœ‰åºåŒºï¼Œ[index, length-1]ä¸ºæ— åºåŒºï¼Œdata[index]ä¸ºå¾…æ’å…¥å…ƒç´ 
 
-            //ÕÛ°ë²éÕÒµÄÇø¼ä·¶Î§[left, right]
+            //æŠ˜åŠæŸ¥æ‰¾çš„åŒºé—´èŒƒå›´[left, right]
             int left = 0, right = index - 1;
             int insert_index = 0;
 
-            //1. ÕÛ°ë²éÕÒ
+            //1. æŠ˜åŠæŸ¥æ‰¾
             while (true)
             {
                 if (left == right)
@@ -170,37 +170,37 @@ public:
                 }
             }
 
-            //2. Ôİ´ædata[index]
+            //2. æš‚å­˜data[index]
             T temp = data[index];
 
-            //3. ½«²åÈëÎ»ÖÃÖ®ºóµÄÔªËØºóÒÆÒ»¸ñ
+            //3. å°†æ’å…¥ä½ç½®ä¹‹åçš„å…ƒç´ åç§»ä¸€æ ¼
             for (int j = index; j > insert_index; j--)
                 data[j] = data[j - 1];
 
-            //4. ²åÈëdata[index]
+            //4. æ’å…¥data[index]
             data[insert_index] = temp;
         }
     }
 
-    //shellÅÅĞò
+    //shellæ’åº
     template <typename T>
     static void shell_sort(T data[], int length)
     {
-        //³õÊ¼ÔöÁ¿ÎªÊı×é³¤¶ÈµÄÒ»°ë£¬´ËºóÃ¿´Î¼õ°ë£¬Ö±ÖÁ¼õÎª1
+        //åˆå§‹å¢é‡ä¸ºæ•°ç»„é•¿åº¦çš„ä¸€åŠï¼Œæ­¤åæ¯æ¬¡å‡åŠï¼Œç›´è‡³å‡ä¸º1
         for (int increment = length / 2; increment > 0; increment /= 2)
         {
-            //°´ÕÕÔöÁ¿½«ÔªËØ·Ö×é£¬×éÄÚÊ¹ÓÃÕÛ°ë²åÈëÅÅĞò
+            //æŒ‰ç…§å¢é‡å°†å…ƒç´ åˆ†ç»„ï¼Œç»„å†…ä½¿ç”¨æŠ˜åŠæ’å…¥æ’åº
             for (int group = 0; group < increment; group++)
             {
-                //groupÎª×éºÅ£¬¼´¸Ã×éÆğÊ¼ÔªËØµÄµØÖ·Æ«ÒÆ£»indexÎª×éÄÚµØÖ·
-                //×éÄÚµØÖ·Ó³ÉäÊı×éµØÖ·£ºdata[group + increment * index]
+                //groupä¸ºç»„å·ï¼Œå³è¯¥ç»„èµ·å§‹å…ƒç´ çš„åœ°å€åç§»ï¼›indexä¸ºç»„å†…åœ°å€
+                //ç»„å†…åœ°å€æ˜ å°„æ•°ç»„åœ°å€ï¼šdata[group + increment * index]
                 for (int index = 1; group + increment * index < length; index++)
                 {
-                    //ÕÛ°ë²éÕÒµÄÇø¼ä·¶Î§
+                    //æŠ˜åŠæŸ¥æ‰¾çš„åŒºé—´èŒƒå›´
                     int left = 0, right = index - 1;
                     int insert_index = 0;
 
-                    //1. ÕÛ°ë²éÕÒ
+                    //1. æŠ˜åŠæŸ¥æ‰¾
                     while (true)
                     {
                         if (left == right)
@@ -233,29 +233,29 @@ public:
                         }
                     }
 
-                    //2. Ôİ´ædata[group + increment * index]
+                    //2. æš‚å­˜data[group + increment * index]
                     T temp = data[group + increment * index];
 
-                    //3. ½«²åÈëÎ»ÖÃÖ®ºóµÄÔªËØºóÒÆÒ»¸ñ
+                    //3. å°†æ’å…¥ä½ç½®ä¹‹åçš„å…ƒç´ åç§»ä¸€æ ¼
                     for (int j = index; j > insert_index; j--)
                         data[group + increment * j] = data[group + increment * j - increment];
 
-                    //4. ²åÈëdata[group + increment * index]
+                    //4. æ’å…¥data[group + increment * index]
                     data[group + increment * insert_index] = temp;
                 }
             }
         }
     }
 
-    //¶ÑÅÅĞò
+    //å †æ’åº
     template <typename T>
     static void heap_sort(T data[], int length)
     {
-        //½¨Á¢³õÊ¼¶Ñ£¬´Ó×îºóÒ»¸ö·ÇÒ¶×Ó½ÚµãÆğÏòÇ°ÏòÉÏµ÷Õû
+        //å»ºç«‹åˆå§‹å †ï¼Œä»æœ€åä¸€ä¸ªéå¶å­èŠ‚ç‚¹èµ·å‘å‰å‘ä¸Šè°ƒæ•´
         for (int i = length / 2 - 1; i >= 0; i--)
             build_heap(data, i, length - 1);
 
-        //½«¶Ñ¶¥ÔªËØÓë¶ÑÄ©Î²ÔªËØ½»»»£¬²¢µ÷Õû¶Ñ
+        //å°†å †é¡¶å…ƒç´ ä¸å †æœ«å°¾å…ƒç´ äº¤æ¢ï¼Œå¹¶è°ƒæ•´å †
         for (int i = length - 1; i > 0; i--)
         {
             swap(data[0], data[i]);
@@ -263,11 +263,11 @@ public:
         }
     }
 
-    //¶şÂ·¹é²¢ÅÅĞò
+    //äºŒè·¯å½’å¹¶æ’åº
     template <typename T>
     static void merge_sort(T data[], int length)
     {
-        //´¦Àí×îĞ¡ÇéĞÎ
+        //å¤„ç†æœ€å°æƒ…å½¢
         if (length <= 1)
             return;
         else if (length == 2)
@@ -276,27 +276,27 @@ public:
                 swap(data[0], data[1]);
             return;
         }
-        else if (length <= MERGE_SORT_SHORTEST_SEGMENT_LENGTH) //¶Î³¤½ÏĞ¡Ê±Ê¹ÓÃÕÛ°ë²åÈëÅÅĞòÒÔÌáÉıĞÔÄÜ
+        else if (length <= MERGE_SORT_SHORTEST_SEGMENT_LENGTH) //æ®µé•¿è¾ƒå°æ—¶ä½¿ç”¨æŠ˜åŠæ’å…¥æ’åºä»¥æå‡æ€§èƒ½
         {
             binary_search_insertion_sort(data, length);
             return;
         }
 
-        //»®·Ö¶Î½ç
+        //åˆ’åˆ†æ®µç•Œ
         int mid = length / 2, first = 0, last = length - 1;
         int a_first = first, a_last = (mid > first) ? mid : first;
         int b_first = (mid >= last) ? last : (mid + 1), b_last = last;
         int a_length = a_last - a_first + 1, b_length = b_last - b_first + 1;
 
-        //·ÖÖÎ
+        //åˆ†æ²»
         merge_sort(&data[a_first], a_length);
         merge_sort(&data[b_first], b_length);
 
-        //ÒÔÏÂÎª¹é²¢
+        //ä»¥ä¸‹ä¸ºå½’å¹¶
         int a_index = a_first, b_index = b_first;
         std::vector<T> temp;
 
-        //´ËÊ±a,bÒÑ×éÄÚÓĞĞò£¬½«a,bµÄÊ×ÔªËØ½ÏĞ¡Õß¹é²¢µ½temp£¬Ö±µ½ÆäÖĞÒ»×é¹é²¢Íê±Ï
+        //æ­¤æ—¶a,bå·²ç»„å†…æœ‰åºï¼Œå°†a,bçš„é¦–å…ƒç´ è¾ƒå°è€…å½’å¹¶åˆ°tempï¼Œç›´åˆ°å…¶ä¸­ä¸€ç»„å½’å¹¶å®Œæ¯•
         while (a_index <= a_last && b_index <= b_last)
         {
             if (data[a_index] < data[b_index])
@@ -305,70 +305,70 @@ public:
                 temp.push_back(data[b_index++]);
         }
 
-        //Î´¹é²¢ÍêµÄÁíÒ»×éµÄÊ£ÓàÔªËØÖ±½Ó²¢Èë
+        //æœªå½’å¹¶å®Œçš„å¦ä¸€ç»„çš„å‰©ä½™å…ƒç´ ç›´æ¥å¹¶å…¥
         while (a_index <= a_last)
             temp.push_back(data[a_index++]);
         while (b_index <= b_last)
             temp.push_back(data[b_index++]);
 
-        //½«¹é²¢ºÃµÄ¶Î¸´ÖÆ»ØÔ­À´µÄÎ»ÖÃ
+        //å°†å½’å¹¶å¥½çš„æ®µå¤åˆ¶å›åŸæ¥çš„ä½ç½®
         for (size_t i = 0; i < temp.size(); i++)
             data[i] = temp[i];
     }
 
-    //¿ìËÙÅÅĞò
+    //å¿«é€Ÿæ’åº
     template <typename T>
     static void quick_sort(T data[], int length, int recursion_depth = 0)
     {
         if (length <= 1)
             return;
-        else if (length <= QUICK_SORT_SHORTEST_SEGMENT_LENGTH) //¶Î³¤½ÏĞ¡Ê±Ê¹ÓÃÕÛ°ë²åÈëÅÅĞòÒÔÌáÉıĞÔÄÜ
+        else if (length <= QUICK_SORT_SHORTEST_SEGMENT_LENGTH) //æ®µé•¿è¾ƒå°æ—¶ä½¿ç”¨æŠ˜åŠæ’å…¥æ’åºä»¥æå‡æ€§èƒ½
         {
             binary_search_insertion_sort(data, length);
             return;
         }
 
-        //³¬¹ı×î´óµİ¹éÉî¶ÈÊ±¸ÄÓÃ¶ÑÅÅĞò£¬ÒÔ±ÜÃâĞÔÄÜ¶ñ»¯
+        //è¶…è¿‡æœ€å¤§é€’å½’æ·±åº¦æ—¶æ”¹ç”¨å †æ’åºï¼Œä»¥é¿å…æ€§èƒ½æ¶åŒ–
         if (recursion_depth >= QUICK_SORT_MAXIMUM_RECURSION_DEPTH)
         {
             heap_sort(data, length);
             return;
         }
 
-        //Ñ¡¶¨ÊàÖáÔªËØ
+        //é€‰å®šæ¢è½´å…ƒç´ 
         T pivot = data[0];
         int left = 0, right = length - 1;
 
-        //Ò»ÌËÅÅĞòºóÈ·¶¨ÊàÖáµÄ×îÖÕÎ»ÖÃ
+        //ä¸€è¶Ÿæ’åºåç¡®å®šæ¢è½´çš„æœ€ç»ˆä½ç½®
         while (left < right)
         {
-            //£¨´ËÊ±leftÖ¸ÏòÊàÖá£©´ÓÓÒÍù×óÉ¨Ãè£¬ÕÒµ½µÚÒ»¸öĞ¡ÓÚÊàÖáµÄÔªËØ£¬ÓëÊàÖá½»»»
+            //ï¼ˆæ­¤æ—¶leftæŒ‡å‘æ¢è½´ï¼‰ä»å³å¾€å·¦æ‰«æï¼Œæ‰¾åˆ°ç¬¬ä¸€ä¸ªå°äºæ¢è½´çš„å…ƒç´ ï¼Œä¸æ¢è½´äº¤æ¢
             while (left < right && data[right] >= pivot)
                 right--;
             swap(data[left], data[right]);
 
-            //£¨´ËÊ±rightÖ¸ÏòÊàÖá£©´Ó×óÍùÓÒÉ¨Ãè£¬ÕÒµ½µÚÒ»¸ö´óÓÚÊàÖáµÄÔªËØ£¬ÓëÊàÖá½»»»
+            //ï¼ˆæ­¤æ—¶rightæŒ‡å‘æ¢è½´ï¼‰ä»å·¦å¾€å³æ‰«æï¼Œæ‰¾åˆ°ç¬¬ä¸€ä¸ªå¤§äºæ¢è½´çš„å…ƒç´ ï¼Œä¸æ¢è½´äº¤æ¢
             while (left < right && data[left] <= pivot)
                 left++;
             swap(data[left], data[right]);
         }
 
-        //£¨´ËÊ±leftºÍright¶¼Ö¸ÏòÊàÖá£©ÒÔÊàÖáÎªÖĞĞÄ£¬»®·Ö¶Î½ç
+        //ï¼ˆæ­¤æ—¶leftå’Œrightéƒ½æŒ‡å‘æ¢è½´ï¼‰ä»¥æ¢è½´ä¸ºä¸­å¿ƒï¼Œåˆ’åˆ†æ®µç•Œ
         int mid = left, first = 0, last = length - 1;
         int a_first = first, a_last = (mid > first) ? mid : first;
         int b_first = (mid >= last) ? last : (mid + 1), b_last = last;
         int a_length = a_last - a_first + 1, b_length = b_last - b_first + 1;
 
-        //·ÖÖÎ
+        //åˆ†æ²»
         quick_sort(&data[a_first], a_length, recursion_depth + 1);
         quick_sort(&data[b_first], b_length, recursion_depth + 1);
     }
 
-    //¼ÆÊıÅÅĞò£¬½öÊÊÓÃÓÚÕûĞÍÊı¾İµÄÅÅĞò
+    //è®¡æ•°æ’åºï¼Œä»…é€‚ç”¨äºæ•´å‹æ•°æ®çš„æ’åº
     template <typename T>
     static void counting_sort(T data[], int length)
     {
-        //Ê×ÏÈÈ·¶¨ÅÅĞòÊı×éµÄÖµÓò
+        //é¦–å…ˆç¡®å®šæ’åºæ•°ç»„çš„å€¼åŸŸ
         T data_min = data[0], data_max = data[0];
         for (int i = 0; i < length; i++)
         {
@@ -378,14 +378,14 @@ public:
                 data_max = data[i];
         }
 
-        //½¨Á¢¼ÆÊıÆ÷
+        //å»ºç«‹è®¡æ•°å™¨
         std::vector<T> counter(data_max - data_min + 1, 0);
 
-        //Í³¼Æ
+        //ç»Ÿè®¡
         for (int i = 0; i < length; i++)
             counter[data[i]]++;
 
-        //·´ÏòÌî³äÊı×é
+        //åå‘å¡«å……æ•°ç»„
         int counter_index = 0;
         for (int i = 0; i < length; i++)
         {
@@ -397,16 +397,16 @@ public:
         }
     }
 
-    //Í°ÅÅĞò
+    //æ¡¶æ’åº
     template <typename T>
     static void bucket_sort(T data[], int length)
     {
-        //¸ù¾İÅÅĞòÔªËØÊıÁ¿£¬È·¶¨Í°µÄÊıÁ¿
+        //æ ¹æ®æ’åºå…ƒç´ æ•°é‡ï¼Œç¡®å®šæ¡¶çš„æ•°é‡
         int num_of_buckets = length / BUCKET_SORT_DEFAULT_NUM_OF_ELEMENTS_IN_BUCKETS; 
         if (num_of_buckets == 0)
             num_of_buckets = 1;
 
-        //Ê×ÏÈÈ·¶¨ÅÅĞòÊı×éµÄÖµÓò
+        //é¦–å…ˆç¡®å®šæ’åºæ•°ç»„çš„å€¼åŸŸ
         T data_min = data[0], data_max = data[0];
         for (int i = 0; i < length; i++)
         {
@@ -416,37 +416,37 @@ public:
                 data_max = data[i];
         }
 
-        //È·¶¨Í°µÄÖµÓò¿í¶È
+        //ç¡®å®šæ¡¶çš„å€¼åŸŸå®½åº¦
         int range_of_bucket = (int)(data_max - data_min + 1) / num_of_buckets;
 
         std::map<T, std::vector<T>> buckets;
 
-        //½«ÔªËØ×°Èë¶ÔÓ¦µÄÍ°£¬²ÉÓÃdata[i] / range_of_bucket·½Ê½Ó³Éä£¬Ê¹µÃÍ°ÄÚÎŞĞò£¬Í°¼äÓĞĞò
+        //å°†å…ƒç´ è£…å…¥å¯¹åº”çš„æ¡¶ï¼Œé‡‡ç”¨data[i] / range_of_bucketæ–¹å¼æ˜ å°„ï¼Œä½¿å¾—æ¡¶å†…æ— åºï¼Œæ¡¶é—´æœ‰åº
         for (int i = 0; i < length; i++)
             buckets[data[i] / range_of_bucket].push_back(data[i]);
 
-        //¶ÔÍ°ÄÚÔªËØÊ¹ÓÃÕÛ°ë²åÈëÅÅĞò
+        //å¯¹æ¡¶å†…å…ƒç´ ä½¿ç”¨æŠ˜åŠæ’å…¥æ’åº
         for (typename std::map<T, typename std::vector<T>>::iterator map_iter = buckets.begin(); map_iter != buckets.end(); map_iter++)
             binary_search_insertion_sort(map_iter->second.data(), map_iter->second.size());
 
-        //·´ÏòÌî³äÊı×é
+        //åå‘å¡«å……æ•°ç»„
         int index = 0;
         for (typename std::map<T, typename std::vector<T>>::iterator map_iter = buckets.begin(); map_iter != buckets.end(); map_iter++)
             for (typename std::vector<T>::iterator vec_iter = map_iter->second.begin(); vec_iter != map_iter->second.end(); vec_iter++)
                 data[index++] = *vec_iter;
     }
 
-    //»ùÊıÅÅĞò£¬½öÊÊÓÃÓÚÕûĞÍÊı¾İµÄÅÅĞò
+    //åŸºæ•°æ’åºï¼Œä»…é€‚ç”¨äºæ•´å‹æ•°æ®çš„æ’åº
     template <typename T>
     static void radix_sort(T data[], int length)
     {
-        //È·¶¨×î´óÔªËØ
+        //ç¡®å®šæœ€å¤§å…ƒç´ 
         T data_max = data[0];
         for (int i = 0; i < length; i++)
             if (data[i] > data_max)
                 data_max = data[i];
 
-        //¸ù¾İ×î´óÔªËØµÄÊ®½øÖÆÎ»Êı¾ö¶¨ÅÅĞòµÄÌËÊı
+        //æ ¹æ®æœ€å¤§å…ƒç´ çš„åè¿›åˆ¶ä½æ•°å†³å®šæ’åºçš„è¶Ÿæ•°
         int trip = 0;
         while (data_max)
         {
@@ -456,14 +456,14 @@ public:
 
         std::map<T, typename std::vector<T>> buckets;
 
-        //ÒÔ´ÓµÍµ½¸ßµÄµÚbitsÎ»ÎªÒÀ¾İÅÅĞò
+        //ä»¥ä»ä½åˆ°é«˜çš„ç¬¬bitsä½ä¸ºä¾æ®æ’åº
         for (int bits = 1; bits <= trip; bits++)
         {
-            //·ÖÅä
+            //åˆ†é…
             for (int i = 0; i < length; i++)
                 buckets[(data[i] % ten_power(bits)) / ten_power(bits - 1)].push_back(data[i]);
 
-            //ÊÕ¼¯
+            //æ”¶é›†
             int index = 0;
             for (typename std::map<T, typename std::vector<T>>::iterator map_iter = buckets.begin(); map_iter != buckets.end(); map_iter++)
                 for (typename std::vector<T>::iterator vec_iter = map_iter->second.begin(); vec_iter != map_iter->second.end(); vec_iter++)

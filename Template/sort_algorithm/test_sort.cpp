@@ -17,9 +17,9 @@ void show(T data[], int length)
 
 int main()
 {
-    //×°ÈëÊı¾İ
+    //è£…å…¥æ•°æ®
     vector<int> data;
-    srand(0); //Îª¶Ô±È¸÷Ëã·¨ĞÔÄÜ£¬ĞèÒªÃ¿´Î×°ÈëÏàÍ¬µÄËæ»úÊıĞòÁĞ
+    srand(0); //ä¸ºå¯¹æ¯”å„ç®—æ³•æ€§èƒ½ï¼Œéœ€è¦æ¯æ¬¡è£…å…¥ç›¸åŒçš„éšæœºæ•°åºåˆ—
     int num_of_data = 100000000;
     for (int i = 0; i < num_of_data; i++)
         data.push_back(rand() % num_of_data);
@@ -32,7 +32,7 @@ int main()
     //sort(data.begin(), data.end());
     //reverse(data.begin(), data.end());
 
-    //ÅÅĞòËã·¨
+    //æ’åºç®—æ³•
     //My_sort::bubble_sort(data.data(), data.size());
     //My_sort::selection_sort(data.data(), data.size());
     //My_sort::insertion_sort(data.data(), data.size());
@@ -51,8 +51,8 @@ int main()
 
 
     /*
-    //¼ìÑéÅÅĞòËã·¨µÄÕıÈ·ĞÔ
-    sort(data_copy.begin(), data_copy.end()); //Ê¹ÓÃC++Ä¬ÈÏÅÅĞòËã·¨×÷Îª±ê×¼´ğ°¸
+    //æ£€éªŒæ’åºç®—æ³•çš„æ­£ç¡®æ€§
+    sort(data_copy.begin(), data_copy.end()); //ä½¿ç”¨C++é»˜è®¤æ’åºç®—æ³•ä½œä¸ºæ ‡å‡†ç­”æ¡ˆ
     for (size_t i = 0; i < data_copy.size(); i++)
     {
         if (data[i] != data_copy[i])
