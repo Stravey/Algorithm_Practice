@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cstring>
-// LeetCode 743 使用迪杰斯特拉算法 单源最短路径 找到所有的最短路径的最大值 就是 最终的答案
+// LeetCode 1334
 // 定义图的顶点数 
 #define max_n 101
 // 定义边的类型
@@ -87,30 +87,33 @@ class Solution {
     }
 
 public:
-    // 网络延迟时间
-    int networkDelayTime(vector<vector<int>>& times, int n, int k) {
-        // 初始化图及边
+    int findTheCity(int n, vector<vector<int>>& edges, int distanceThreshold) {
         initEdges(n);
-        for(int i = 0; i < times.size(); i++) {
-            // 因为 dijkstra 是 0 开始的 所以这里要减 1
-            int u = times[i][0] - 1;
-            int v = times[i][1] - 1;
-            edgeType w = times[i][2];
+        for(int i = 0; i < edges.size(); i++) {
+            int u = edges[i][0];
+            int v = edges[i][1];
+            edgeType w = edges[i][2];
+            // 双向带权边
             addEdge(u, v, w);
+            addEdge(v, u, w);
         }
-        edgeType dist[max_n];
-        dijkstra(n, k - 1, dist);
-        // 类似于线性枚举的过程 找最大值
-        int maxx = 0;
-        for(int i = 0; i < n; i++) {
-            if(dist[i] == inf) {
-                return -1;
+        int retCnt = 1000000000;
+        int retIdx = -1;
+        for(int i = n - 1; i >= 0; i--) {
+            edgeType dist[max_n];
+            dijkstra(n, i, dist);
+            int cnt = 0;
+            for(int j = 0; j < n; j++) {
+                if(dist[j] <= distanceThreshold) {
+                    cnt++;
+                }
             }
-            if(maxx < dist[i]) {
-                maxx = dist[i];
+            if(cnt < retCnt) {
+                retCnt = cnt;
+                retIdx = i;
             }
         }
-        return maxx;
+        return retIdx;
     }
 };
 
