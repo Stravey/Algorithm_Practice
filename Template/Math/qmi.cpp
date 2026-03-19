@@ -2,7 +2,7 @@
 using namespace std;
 
 // 快速幂 模板
-// 求 m^k mod p，时间复杂度 O(logk)。
+// 求 m^k mod p，时间复杂度 O(log k)。
 
 int qmi(int m, int k, int p)
 {
