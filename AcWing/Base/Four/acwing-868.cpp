@@ -1,5 +1,6 @@
 // 筛质数
 // O(log(log n))
+// 埃式筛
 
 #include <iostream>
 #include <algorithm>
@@ -17,7 +18,7 @@ void get_primes(int x)
     {
         if(!st[i])
         {
-            primes[cnt++] = x;
+            primes[cnt++] = i;
             for(int j = i + i; j <= x; j += i)
             {
                 st[j] = true;
